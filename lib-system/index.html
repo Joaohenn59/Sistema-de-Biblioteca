@@ -1,17 +1,65 @@
-<!doctype html>
-<html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sistema de Biblioteca</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sistema Biblioteca - Gestão Completa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <script src="https://kit.fontawesome.com/a2e0e6ad5f.js" crossorigin="anonymous"></script>
 </head>
-<body>
-  <div id="app">
-    <nav id="navbar"></nav>
-    <main id="view" class="container"></main>
-    <div id="toast-container"></div>
+<body class="min-h-screen flex">
+  <!-- Sidebar -->
+  <div class="sidebar fixed lg:relative w-64 bg-gray-900 text-white h-screen p-4 z-50">
+    <div class="flex items-center justify-center mb-8">
+      <i class="fas fa-book-reader text-3xl text-blue-400 mr-3"></i>
+      <h1 class="text-2xl font-bold">Biblioteca</h1>
+    </div>
+
+    <nav class="space-y-2">
+      <button onclick="navigateTo('/')" class="w-full text-left p-3 rounded-lg hover:bg-blue-600 transition-colors flex items-center">
+        <i class="fas fa-home mr-3"></i> Dashboard
+      </button>
+      <button onclick="navigateTo('/books')" class="w-full text-left p-3 rounded-lg hover:bg-blue-600 transition-colors flex items-center">
+        <i class="fas fa-book mr-3"></i> Livros
+      </button>
+      <button onclick="navigateTo('/users')" class="w-full text-left p-3 rounded-lg hover:bg-blue-600 transition-colors flex items-center">
+        <i class="fas fa-users mr-3"></i> Usuários
+      </button>
+      <button onclick="navigateTo('/loans')" class="w-full text-left p-3 rounded-lg hover:bg-blue-600 transition-colors flex items-center">
+        <i class="fas fa-exchange-alt mr-3"></i> Empréstimos
+      </button>
+      <button onclick="navigateTo('/reports')" class="w-full text-left p-3 rounded-lg hover:bg-blue-600 transition-colors flex items-center">
+        <i class="fas fa-chart-bar mr-3"></i> Relatórios
+      </button>
+    </nav>
+
+    <div class="absolute bottom-4 left-4 right-4">
+      <button onclick="sair()" class="w-full p-3 rounded-lg bg-red-600 hover:bg-red-700 transition-colors flex items-center justify-center">
+        <i class="fas fa-sign-out-alt mr-2"></i> Sair
+      </button>
+    </div>
   </div>
-  <script type="module" src="./assets/app/main.js"></script>
+
+  <!-- Mobile Menu Button -->
+  <button onclick="toggleSidebar()" class="lg:hidden fixed top-4 left-4 z-50 p-2 bg-blue-600 text-white rounded-lg">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Main Content -->
+  <div class="flex-1 p-4 lg:p-6 ml-0 lg:ml-64">
+    <div id="content" class="page-transition"></div>
+  </div>
+
+  <!-- Toast/Modal (caso seus componentes usem) -->
+  <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-2"></div>
+  <div id="modal-container" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-lg p-6 w-11/12 max-w-md">
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- Roteador -->
+  <script type="module" src="assets/app/main.js"></script>
 </body>
 </html>
